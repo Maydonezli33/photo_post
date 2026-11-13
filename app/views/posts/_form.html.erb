@@ -1,0 +1,31 @@
+<%= form_with(model: post) do |form| %>
+  <% if post.errors.any? %>
+    <div style="color: red;">
+      <h3><%= pluralize(post.errors.count, "error") %></h3>
+      <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, "Title" %><br>
+    <%= form.text_field :title, maxlength: 20 %>
+  </div>
+
+  <div>
+    <%= form.label :content, "Content" %><br>
+    <%= form.text_area :content, maxlength: 200 %>
+  </div>
+
+  <div>
+    <%= form.label :image, "Photo" %><br>
+    <%= form.file_field :image, accept: "image/*" %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,25 @@
+<h1>Posts</h1>
+
+<p><%= notice %></p>
+
+<%= link_to "My Page", mypage_path %>
+<%= link_to "New Post", new_post_path %>
+
+<hr>
+
+<% @posts.each do |post| %>
+  <div>
+    <h2>
+      <%= link_to post.title, post_path(post) %>
+    </h2>
+
+    <p>By: <%= post.user.name %></p>
+    <p><%= post.content %></p>
+
+    <% if post.image.attached? %>
+      <%= image_tag post.image, size: "300x300" %>
+    <% end %>
+  </div>
+
+  <hr>
+<% end %>

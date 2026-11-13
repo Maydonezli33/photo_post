@@ -1,0 +1,15 @@
+<h1>My Page</h1>
+
+<p>Name: <%= current_user.name %></p>
+<p>Email: <%= current_user.email %></p>
+
+<% if current_user.icon.attached? %>
+  <%= image_tag current_user.icon, size: "600x600" %>
+<% else %>
+  <%= image_tag "NoImage.png", size: "600x600" %>
+<% end %>
+
+<p><%= link_to "Posts", posts_path %></p>
+<p><%= link_to "Edit Profile", edit_user_registration_path %></p>
+
+<%= button_to "Logout", destroy_user_session_path, method: :delete %>

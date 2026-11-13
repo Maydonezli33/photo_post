@@ -1,0 +1,835 @@
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY) /*application='PhotoPost'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='PhotoPost'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='PhotoPost'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2026-11-13 04:22:59.349763', '2026-11-13 04:22:59.349766') RETURNING "key" /*application='PhotoPost'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='PhotoPost'*/[0m
+Migrating to DeviseCreateUsers (20261113042241)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='PhotoPost'*/[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime(6), "remember_created_at" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='PhotoPost'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email") /*application='PhotoPost'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token") /*application='PhotoPost'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20261113042241') RETURNING "version" /*application='PhotoPost'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='PhotoPost'*/[0m
+Migrating to AddNameToUsers (20261113042247)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='PhotoPost'*/[0m
+  [1m[35m (1.4ms)[0m  [1m[35mALTER TABLE "users" ADD "name" varchar /*application='PhotoPost'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20261113042247') RETURNING "version" /*application='PhotoPost'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='PhotoPost'*/[0m
+Migrating to CreateActiveStorageTables (20261113042251)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='PhotoPost'*/[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "key" varchar NOT NULL, "filename" varchar NOT NULL, "content_type" varchar, "metadata" text, "service_name" varchar NOT NULL, "byte_size" bigint NOT NULL, "checksum" varchar, "created_at" datetime(6) NOT NULL) /*application='PhotoPost'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key") /*application='PhotoPost'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "record_type" varchar NOT NULL, "record_id" bigint NOT NULL, "blob_id" bigint NOT NULL, "created_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+) /*application='PhotoPost'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id") /*application='PhotoPost'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id") /*application='PhotoPost'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "blob_id" bigint NOT NULL, "variation_digest" varchar NOT NULL, CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+) /*application='PhotoPost'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest") /*application='PhotoPost'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20261113042251') RETURNING "version" /*application='PhotoPost'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='PhotoPost'*/[0m
+Migrating to CreatePosts (20261113042255)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='PhotoPost'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "posts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "content" text, "user_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_5b5ddfd518"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+) /*application='PhotoPost'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_posts_on_user_id" ON "posts" ("user_id") /*application='PhotoPost'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20261113042255') RETURNING "version" /*application='PhotoPost'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='PhotoPost'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='PhotoPost'*/[0m
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Started GET "/" for 223.135.182.116 at 2026-11-13 04:26:20 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='PhotoPost'*/[0m
+Processing by MypagesController#show as HTML
+Completed 401 Unauthorized in 25ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for 223.135.182.116 at 2026-11-13 04:26:21 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /usr/local/rubies/3.4.9/lib/ruby/gems/3.4.0/gems/devise-5.0.4/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/local/rubies/3.4.9/lib/ruby/gems/3.4.0/gems/devise-5.0.4/app/views/devise/shared/_links.html.erb (Duration: 0.8ms | GC: 0.0ms)
+  Rendered /usr/local/rubies/3.4.9/lib/ruby/gems/3.4.0/gems/devise-5.0.4/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 9.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 15.7ms | GC: 0.0ms)
+Completed 200 OK in 44ms (Views: 25.8ms | ActiveRecord: 1.9ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Started GET "/" for 223.135.182.116 at 2026-11-13 04:28:41 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='PhotoPost'*/[0m
+Processing by MypagesController#show as HTML
+Completed 401 Unauthorized in 11ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for 223.135.182.116 at 2026-11-13 04:28:42 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.8ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 5.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.6ms | GC: 0.0ms)
+Completed 200 OK in 34ms (Views: 19.1ms | ActiveRecord: 3.1ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_up" for 223.135.182.116 at 2026-11-13 04:28:44 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered devise/shared/_links.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 2.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.9ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 5.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users" for 223.135.182.116 at 2026-11-13 04:29:04 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by Devise::RegistrationsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "user" => {"name" => "deniz", "email" => "[FILTERED]", "password" => "[FILTERED]", "password_confirmation" => "[FILTERED]"}, "commit" => "Sign up"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='PhotoPost',controller='registrations'*/[0m
+  [1m[36mUser Exists? (2.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'krc33@gmail.com' LIMIT 1 /*action='create',application='PhotoPost',controller='registrations'*/[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "name") VALUES ('krc33@gmail.com', '$2a$12$x6J17PGROdEVxTmHAc8kS.8rkPm53tGS8FX1GlZ5huPlf/0za5FIK', NULL, NULL, NULL, '2026-11-13 04:29:04.867659', '2026-11-13 04:29:04.867659', 'deniz') RETURNING "id" /*action='create',application='PhotoPost',controller='registrations'*/[0m
+  [1m[36mTRANSACTION (4.9ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='create',application='PhotoPost',controller='registrations'*/[0m
+Redirected to https://reimagined-fiesta-vp5vp9p794gpfjr7-3000.app.github.dev/mypage
+Completed 303 See Other in 262ms (ActiveRecord: 7.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/mypage" for 223.135.182.116 at 2026-11-13 04:29:05 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by MypagesController#show as TURBO_STREAM
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering mypages/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'User' AND "active_storage_attachments"."name" = 'icon' LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  ↳ app/views/mypages/show.html.erb:7
+  Rendered mypages/show.html.erb within layouts/application (Duration: 27.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 28.6ms | GC: 0.0ms)
+Completed 200 OK in 37ms (Views: 29.9ms | ActiveRecord: 0.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/posts" for 223.135.182.116 at 2026-11-13 04:29:07 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" /*action='index',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:9
+  Rendered posts/index.html.erb within layouts/application (Duration: 2.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.9ms | GC: 0.0ms)
+Completed 200 OK in 25ms (Views: 3.7ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/edit" for 223.135.182.116 at 2026-11-13 04:29:07 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by Devise::RegistrationsController#edit as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='edit',application='PhotoPost',controller='registrations'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/edit.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered devise/registrations/edit.html.erb within layouts/application (Duration: 4.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.5ms | GC: 0.0ms)
+Completed 200 OK in 10ms (Views: 6.1ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/posts" for 223.135.182.116 at 2026-11-13 04:29:08 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" /*action='index',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:9
+  Rendered posts/index.html.erb within layouts/application (Duration: 1.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.8ms | GC: 0.0ms)
+Completed 200 OK in 4ms (Views: 3.3ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/edit" for 223.135.182.116 at 2026-11-13 04:29:08 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by Devise::RegistrationsController#edit as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='edit',application='PhotoPost',controller='registrations'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/edit.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered devise/registrations/edit.html.erb within layouts/application (Duration: 2.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.5ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 4.2ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/users" for 223.135.182.116 at 2026-11-13 04:30:06 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by Devise::RegistrationsController#update as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "user" => {"name" => "deniz", "icon" => #<ActionDispatch::Http::UploadedFile:0x00007d7db62b3cf0 @tempfile=#<Tempfile:/tmp/RackMultipart20261113-9338-ecnyot.jpg>, @content_type="image/jpeg", @original_filename="images.jpg", @headers="Content-Disposition: form-data; name=\"user[icon]\"; filename=\"images.jpg\"\r\nContent-Type: image/jpeg\r\n">, "email" => "[FILTERED]", "password" => "[FILTERED]", "password_confirmation" => "[FILTERED]", "current_password" => "[FILTERED]"}, "commit" => "Update"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='update',application='PhotoPost',controller='registrations'*/[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='update',application='PhotoPost',controller='registrations'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/edit.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.6ms | GC: 0.0ms)
+  Rendered devise/registrations/edit.html.erb within layouts/application (Duration: 25.2ms | GC: 22.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 26.1ms | GC: 22.2ms)
+Completed 422 Unprocessable Content in 293ms (Views: 26.6ms | ActiveRecord: 0.6ms (2 queries, 0 cached) | GC: 22.2ms)
+
+
+Started PUT "/users" for 223.135.182.116 at 2026-11-13 04:30:30 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by Devise::RegistrationsController#update as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "user" => {"name" => "deniz", "email" => "[FILTERED]", "password" => "[FILTERED]", "password_confirmation" => "[FILTERED]", "current_password" => "[FILTERED]"}, "commit" => "Update"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='update',application='PhotoPost',controller='registrations'*/[0m
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='update',application='PhotoPost',controller='registrations'*/[0m
+Redirected to https://reimagined-fiesta-vp5vp9p794gpfjr7-3000.app.github.dev/
+Completed 303 See Other in 245ms (ActiveRecord: 1.7ms (2 queries, 0 cached) | GC: 1.3ms)
+
+
+Started GET "/" for 223.135.182.116 at 2026-11-13 04:30:31 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by MypagesController#show as TURBO_STREAM
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering mypages/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'User' AND "active_storage_attachments"."name" = 'icon' LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  ↳ app/views/mypages/show.html.erb:7
+  Rendered mypages/show.html.erb within layouts/application (Duration: 2.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.9ms | GC: 1.0ms)
+Completed 200 OK in 7ms (Views: 4.4ms | ActiveRecord: 0.2ms (2 queries, 0 cached) | GC: 1.0ms)
+
+
+Started GET "/users/edit" for 223.135.182.116 at 2026-11-13 04:30:32 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by Devise::RegistrationsController#edit as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='edit',application='PhotoPost',controller='registrations'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/edit.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered devise/registrations/edit.html.erb within layouts/application (Duration: 3.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.9ms | GC: 0.9ms)
+Completed 200 OK in 8ms (Views: 5.4ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.9ms)
+
+
+Started GET "/posts" for 223.135.182.116 at 2026-11-13 04:30:33 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" /*action='index',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:9
+  Rendered posts/index.html.erb within layouts/application (Duration: 1.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.4ms | GC: 0.0ms)
+Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/users/edit" for 223.135.182.116 at 2026-11-13 04:30:33 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by Devise::RegistrationsController#edit as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='edit',application='PhotoPost',controller='registrations'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/edit.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered devise/registrations/edit.html.erb within layouts/application (Duration: 3.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 4.3ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/posts" for 223.135.182.116 at 2026-11-13 04:30:33 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" /*action='index',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:9
+  Rendered posts/index.html.erb within layouts/application (Duration: 1.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | GC: 0.0ms)
+Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/posts/new" for 223.135.182.116 at 2026-11-13 04:30:35 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 4.0ms | GC: 0.0ms)
+  Rendered posts/new.html.erb within layouts/application (Duration: 4.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.6ms | GC: 0.2ms)
+Completed 200 OK in 11ms (Views: 6.2ms | ActiveRecord: 0.3ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+Started POST "/posts" for 223.135.182.116 at 2026-11-13 04:30:52 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "post" => {"title" => "banana", "content" => "banan is good", "user_id" => "deniz"}, "commit" => "Create Post"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:27:in 'block in PostsController#create'
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 0 LIMIT 1 /*action='create',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:27:in 'block in PostsController#create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='create',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:27:in 'block in PostsController#create'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 2.0ms | GC: 0.5ms)
+  Rendered posts/new.html.erb within layouts/application (Duration: 2.3ms | GC: 0.5ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.1ms | GC: 0.5ms)
+Completed 422 Unprocessable Content in 22ms (Views: 3.6ms | ActiveRecord: 1.4ms (1 query, 0 cached) | GC: 0.9ms)
+
+
+Started POST "/posts" for 223.135.182.116 at 2026-11-13 04:31:03 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "post" => {"title" => "banana", "content" => "banan is good", "user_id" => "maydonez"}, "commit" => "Create Post"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:27:in 'block in PostsController#create'
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 0 LIMIT 1 /*action='create',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:27:in 'block in PostsController#create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='create',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:27:in 'block in PostsController#create'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 1.3ms | GC: 0.0ms)
+  Rendered posts/new.html.erb within layouts/application (Duration: 1.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.3ms | GC: 0.0ms)
+Completed 422 Unprocessable Content in 10ms (Views: 2.7ms | ActiveRecord: 1.6ms (1 query, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/posts" for 223.135.182.116 at 2026-11-13 04:31:03 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" /*action='index',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:9
+  Rendered posts/index.html.erb within layouts/application (Duration: 2.1ms | GC: 0.5ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.1ms | GC: 0.5ms)
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/posts" for 223.135.182.116 at 2026-11-13 04:31:04 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" /*action='index',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:9
+  Rendered posts/index.html.erb within layouts/application (Duration: 5.7ms | GC: 3.6ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.9ms | GC: 3.6ms)
+Completed 200 OK in 10ms (Views: 9.2ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 4.1ms)
+
+
+Started GET "/posts/new" for 223.135.182.116 at 2026-11-13 04:31:05 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 2.5ms | GC: 1.1ms)
+  Rendered posts/new.html.erb within layouts/application (Duration: 3.8ms | GC: 1.9ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.1ms | GC: 2.3ms)
+Completed 200 OK in 7ms (Views: 5.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.9ms)
+
+
+Started GET "/" for 223.135.182.116 at 2026-11-13 04:31:09 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by MypagesController#show as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering mypages/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'User' AND "active_storage_attachments"."name" = 'icon' LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  ↳ app/views/mypages/show.html.erb:7
+  Rendered mypages/show.html.erb within layouts/application (Duration: 4.1ms | GC: 2.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.9ms | GC: 2.1ms)
+Completed 200 OK in 12ms (Views: 5.3ms | ActiveRecord: 0.2ms (2 queries, 0 cached) | GC: 5.2ms)
+
+
+Started GET "/posts" for 223.135.182.116 at 2026-11-13 04:31:10 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" /*action='index',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:9
+  Rendered posts/index.html.erb within layouts/application (Duration: 2.5ms | GC: 0.8ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.9ms | GC: 2.2ms)
+Completed 200 OK in 6ms (Views: 5.1ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 2.5ms)
+
+
+Started GET "/" for 223.135.182.116 at 2026-11-13 04:31:12 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by MypagesController#show as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering mypages/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'User' AND "active_storage_attachments"."name" = 'icon' LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  ↳ app/views/mypages/show.html.erb:7
+  Rendered mypages/show.html.erb within layouts/application (Duration: 3.5ms | GC: 1.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.8ms | GC: 2.9ms)
+Completed 200 OK in 13ms (Views: 6.3ms | ActiveRecord: 0.3ms (2 queries, 0 cached) | GC: 5.9ms)
+
+
+Started GET "/posts" for 223.135.182.116 at 2026-11-13 04:31:33 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" /*action='index',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:9
+  Rendered posts/index.html.erb within layouts/application (Duration: 4.3ms | GC: 2.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.4ms | GC: 3.7ms)
+Completed 200 OK in 8ms (Views: 7.4ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 4.3ms)
+
+
+Started GET "/posts" for 223.135.182.116 at 2026-11-13 04:31:33 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" /*action='index',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:9
+  Rendered posts/index.html.erb within layouts/application (Duration: 3.4ms | GC: 1.9ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.4ms | GC: 1.9ms)
+Completed 200 OK in 6ms (Views: 5.4ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 2.5ms)
+
+
+Started GET "/users/edit" for 223.135.182.116 at 2026-11-13 04:31:34 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by Devise::RegistrationsController#edit as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='edit',application='PhotoPost',controller='registrations'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/edit.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered devise/registrations/edit.html.erb within layouts/application (Duration: 4.8ms | GC: 2.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.6ms | GC: 2.3ms)
+Completed 200 OK in 11ms (Views: 6.2ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 3.5ms)
+
+
+Started PUT "/users" for 223.135.182.116 at 2026-11-13 04:31:51 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by Devise::RegistrationsController#update as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "user" => {"name" => "deniz", "icon" => #<ActionDispatch::Http::UploadedFile:0x00007d7db68287a8 @tempfile=#<Tempfile:/tmp/RackMultipart20261113-9338-omdc4u.jpg>, @content_type="image/jpeg", @original_filename="images.jpg", @headers="Content-Disposition: form-data; name=\"user[icon]\"; filename=\"images.jpg\"\r\nContent-Type: image/jpeg\r\n">, "email" => "[FILTERED]", "password" => "[FILTERED]", "password_confirmation" => "[FILTERED]", "current_password" => "[FILTERED]"}, "commit" => "Update"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='update',application='PhotoPost',controller='registrations'*/[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='update',application='PhotoPost',controller='registrations'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='update',application='PhotoPost',controller='registrations'*/[0m
+  [1m[36mActiveStorage::Blob Load (1.7ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'User' AND "active_storage_attachments"."name" = 'icon' LIMIT 1 /*action='update',application='PhotoPost',controller='registrations'*/[0m
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'User' AND "active_storage_attachments"."name" = 'icon' LIMIT 1 /*action='update',application='PhotoPost',controller='registrations'*/[0m
+  [1m[36mActiveStorage::Blob Create (0.1ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ('iopm9a20uvrppba16xrtgv2nk10n', 'images.jpg', 'image/jpeg', '{"identified":true}', 'local', 21564, 'zBl6qM7utfUf/qmUEuxVKg==', '2026-11-13 04:31:51.900521') RETURNING "id" /*action='update',application='PhotoPost',controller='registrations'*/[0m
+  [1m[36mActiveStorage::Attachment Create (0.1ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ('icon', 'User', 1, 1, '2026-11-13 04:31:51.903315') RETURNING "id" /*action='update',application='PhotoPost',controller='registrations'*/[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = '2026-11-13 04:31:51.905562' WHERE "users"."id" = 1 /*action='update',application='PhotoPost',controller='registrations'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='update',application='PhotoPost',controller='registrations'*/[0m
+[36m  Disk Storage (0.4ms) [0m[32mUploaded file to key: iopm9a20uvrppba16xrtgv2nk10n (checksum: zBl6qM7utfUf/qmUEuxVKg==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: c99ae762-a5db-40e8-9e3f-c8f070585dbf) to Async(default) with arguments: #<GlobalID:0x00007d7db67ca6a8 @uri=#<URI::GID gid://photo-post/ActiveStorage::Blob/1>>
+Redirected to https://reimagined-fiesta-vp5vp9p794gpfjr7-3000.app.github.dev/
+Completed 303 See Other in 311ms (ActiveRecord: 2.4ms (7 queries, 0 cached) | GC: 3.4ms)
+
+
+[ActiveJob] [ActiveStorage::AnalyzeJob] [c99ae762-a5db-40e8-9e3f-c8f070585dbf]   [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*application='PhotoPost'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [c99ae762-a5db-40e8-9e3f-c8f070585dbf] Performing ActiveStorage::AnalyzeJob (Job ID: c99ae762-a5db-40e8-9e3f-c8f070585dbf) from Async(default) enqueued at 2026-11-13T04:31:51.941896543Z with arguments: #<GlobalID:0x00007d7db675db70 @uri=#<URI::GID gid://photo-post/ActiveStorage::Blob/1>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [c99ae762-a5db-40e8-9e3f-c8f070585dbf] Skipping image analysis because the ruby-vips gem isn't installed
+[ActiveJob] [ActiveStorage::AnalyzeJob] [c99ae762-a5db-40e8-9e3f-c8f070585dbf]   [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='PhotoPost',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [c99ae762-a5db-40e8-9e3f-c8f070585dbf]   [1m[36mActiveStorage::Blob Update (1.4ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = '{"identified":true,"analyzed":true}' WHERE "active_storage_blobs"."id" = 1 /*application='PhotoPost',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [c99ae762-a5db-40e8-9e3f-c8f070585dbf]   [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."blob_id" = 1 /*application='PhotoPost',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [c99ae762-a5db-40e8-9e3f-c8f070585dbf]   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 /*application='PhotoPost',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [c99ae762-a5db-40e8-9e3f-c8f070585dbf]   [1m[36mUser Update (0.0ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = '2026-11-13 04:31:51.973571' WHERE "users"."id" = 1 /*application='PhotoPost',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [c99ae762-a5db-40e8-9e3f-c8f070585dbf]   [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='PhotoPost',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [c99ae762-a5db-40e8-9e3f-c8f070585dbf] Performed ActiveStorage::AnalyzeJob (Job ID: c99ae762-a5db-40e8-9e3f-c8f070585dbf) from Async(default) in 26.19ms
+Started GET "/" for 223.135.182.116 at 2026-11-13 04:31:52 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by MypagesController#show as TURBO_STREAM
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering mypages/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'User' AND "active_storage_attachments"."name" = 'icon' LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  ↳ app/views/mypages/show.html.erb:7
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  ↳ app/views/mypages/show.html.erb:8
+  Rendered mypages/show.html.erb within layouts/application (Duration: 6.8ms | GC: 1.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.8ms | GC: 1.3ms)
+Completed 200 OK in 11ms (Views: 8.0ms | ActiveRecord: 0.3ms (3 queries, 0 cached) | GC: 1.5ms)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--1e20bdb2a8f9c48c79bc9e4f0484d6df04235180/images.jpg" for 223.135.182.116 at 2026-11-13 04:31:52 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"signed_id" => "eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--1e20bdb2a8f9c48c79bc9e4f0484d6df04235180", "filename" => "images"}
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='show',application='PhotoPost',controller='redirect'*/[0m
+[36m  Disk Storage (0.6ms) [0m[34mGenerated URL for file at key: iopm9a20uvrppba16xrtgv2nk10n (https://reimagined-fiesta-vp5vp9p794gpfjr7-3000.app.github.dev/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJpb3BtOWEyMHV2cnBwYmExNnhydGd2Mm5rMTBuIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiaW1hZ2VzLmpwZ1wiOyBmaWxlbmFtZSo9VVRGLTgnJ2ltYWdlcy5qcGciLCJjb250ZW50X3R5cGUiOiJpbWFnZS9qcGVnIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0xMS0xM1QwNDozNjo1Mi4xNzVaIiwicHVyIjoiYmxvYl9rZXkifX0=--3a4cce609cbdfb09a0b593eee39ff2a1c21eb50c/images.jpg)[0m
+Redirected to https://reimagined-fiesta-vp5vp9p794gpfjr7-3000.app.github.dev/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJpb3BtOWEyMHV2cnBwYmExNnhydGd2Mm5rMTBuIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiaW1hZ2VzLmpwZ1wiOyBmaWxlbmFtZSo9VVRGLTgnJ2ltYWdlcy5qcGciLCJjb250ZW50X3R5cGUiOiJpbWFnZS9qcGVnIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0xMS0xM1QwNDozNjo1Mi4xNzVaIiwicHVyIjoiYmxvYl9rZXkifX0=--3a4cce609cbdfb09a0b593eee39ff2a1c21eb50c/images.jpg
+Completed 302 Found in 6ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJpb3BtOWEyMHV2cnBwYmExNnhydGd2Mm5rMTBuIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiaW1hZ2VzLmpwZ1wiOyBmaWxlbmFtZSo9VVRGLTgnJ2ltYWdlcy5qcGciLCJjb250ZW50X3R5cGUiOiJpbWFnZS9qcGVnIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0xMS0xM1QwNDozNjo1Mi4xNzVaIiwicHVyIjoiYmxvYl9rZXkifX0=--3a4cce609cbdfb09a0b593eee39ff2a1c21eb50c/images.jpg" for 223.135.182.116 at 2026-11-13 04:31:52 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "images"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/posts" for 223.135.182.116 at 2026-11-13 04:32:00 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" /*action='index',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:9
+  Rendered posts/index.html.erb within layouts/application (Duration: 1.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.4ms | GC: 0.0ms)
+Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/posts" for 223.135.182.116 at 2026-11-13 04:32:04 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" /*action='index',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:9
+  Rendered posts/index.html.erb within layouts/application (Duration: 1.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | GC: 0.0ms)
+Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/edit" for 223.135.182.116 at 2026-11-13 04:32:05 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by Devise::RegistrationsController#edit as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='edit',application='PhotoPost',controller='registrations'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/edit.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered devise/registrations/edit.html.erb within layouts/application (Duration: 2.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 4.2ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/posts" for 223.135.182.116 at 2026-11-13 04:32:05 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" /*action='index',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:9
+  Rendered posts/index.html.erb within layouts/application (Duration: 1.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.4ms | GC: 0.0ms)
+Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/edit" for 223.135.182.116 at 2026-11-13 04:32:05 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by Devise::RegistrationsController#edit as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='edit',application='PhotoPost',controller='registrations'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/edit.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered devise/registrations/edit.html.erb within layouts/application (Duration: 2.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.9ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 3.3ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 223.135.182.116 at 2026-11-13 04:32:07 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by MypagesController#show as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering mypages/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'User' AND "active_storage_attachments"."name" = 'icon' LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  ↳ app/views/mypages/show.html.erb:7
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  ↳ app/views/mypages/show.html.erb:8
+  Rendered mypages/show.html.erb within layouts/application (Duration: 18.9ms | GC: 15.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 19.6ms | GC: 15.1ms)
+Completed 200 OK in 23ms (Views: 19.9ms | ActiveRecord: 0.4ms (3 queries, 0 cached) | GC: 15.1ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJpb3BtOWEyMHV2cnBwYmExNnhydGd2Mm5rMTBuIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiaW1hZ2VzLmpwZ1wiOyBmaWxlbmFtZSo9VVRGLTgnJ2ltYWdlcy5qcGciLCJjb250ZW50X3R5cGUiOiJpbWFnZS9qcGVnIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0xMS0xM1QwNDozNjo1Mi4xNzVaIiwicHVyIjoiYmxvYl9rZXkifX0=--3a4cce609cbdfb09a0b593eee39ff2a1c21eb50c/images.jpg" for 223.135.182.116 at 2026-11-13 04:32:07 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "images"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 223.135.182.116 at 2026-11-13 04:33:15 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by MypagesController#show as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering mypages/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'User' AND "active_storage_attachments"."name" = 'icon' LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  ↳ app/views/mypages/show.html.erb:7
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  ↳ app/views/mypages/show.html.erb:8
+  Rendered mypages/show.html.erb within layouts/application (Duration: 20.1ms | GC: 0.5ms)
+  Rendered layout layouts/application.html.erb (Duration: 22.4ms | GC: 0.7ms)
+Completed 200 OK in 42ms (Views: 28.1ms | ActiveRecord: 2.5ms (3 queries, 0 cached) | GC: 1.6ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJpb3BtOWEyMHV2cnBwYmExNnhydGd2Mm5rMTBuIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiaW1hZ2VzLmpwZ1wiOyBmaWxlbmFtZSo9VVRGLTgnJ2ltYWdlcy5qcGciLCJjb250ZW50X3R5cGUiOiJpbWFnZS9qcGVnIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0xMS0xM1QwNDozNjo1Mi4xNzVaIiwicHVyIjoiYmxvYl9rZXkifX0=--3a4cce609cbdfb09a0b593eee39ff2a1c21eb50c/images.jpg" for 223.135.182.116 at 2026-11-13 04:33:15 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "images"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 223.135.182.116 at 2026-11-13 04:34:35 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by MypagesController#show as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering mypages/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'User' AND "active_storage_attachments"."name" = 'icon' LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  ↳ app/views/mypages/show.html.erb:7
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  ↳ app/views/mypages/show.html.erb:8
+  Rendered mypages/show.html.erb within layouts/application (Duration: 33.0ms | GC: 12.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 36.0ms | GC: 12.2ms)
+Completed 200 OK in 46ms (Views: 36.6ms | ActiveRecord: 1.9ms (3 queries, 0 cached) | GC: 12.2ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJpb3BtOWEyMHV2cnBwYmExNnhydGd2Mm5rMTBuIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiaW1hZ2VzLmpwZ1wiOyBmaWxlbmFtZSo9VVRGLTgnJ2ltYWdlcy5qcGciLCJjb250ZW50X3R5cGUiOiJpbWFnZS9qcGVnIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0xMS0xM1QwNDozNjo1Mi4xNzVaIiwicHVyIjoiYmxvYl9rZXkifX0=--3a4cce609cbdfb09a0b593eee39ff2a1c21eb50c/images.jpg" for 223.135.182.116 at 2026-11-13 04:34:35 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "images"}
+Completed 304 Not Modified in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.8ms)
+
+
+Started GET "/posts" for 223.135.182.116 at 2026-11-13 04:34:36 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='PhotoPost',controller='posts'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:11
+  Rendered posts/index.html.erb within layouts/application (Duration: 2.7ms | GC: 0.8ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | GC: 0.8ms)
+Completed 200 OK in 13ms (Views: 4.4ms | ActiveRecord: 0.5ms (2 queries, 0 cached) | GC: 1.6ms)
+
+
+Started GET "/posts" for 223.135.182.116 at 2026-11-13 04:34:36 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='PhotoPost',controller='posts'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:11
+  Rendered posts/index.html.erb within layouts/application (Duration: 1.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.3ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 2.7ms | ActiveRecord: 0.2ms (2 queries, 0 cached) | GC: 0.6ms)
+
+
+Started GET "/posts/new" for 223.135.182.116 at 2026-11-13 04:34:37 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='PhotoPost',controller='posts'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 1.3ms | GC: 0.0ms)
+  Rendered posts/new.html.erb within layouts/application (Duration: 2.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.9ms | GC: 0.3ms)
+Completed 200 OK in 11ms (Views: 3.4ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/mypage" for 223.135.182.116 at 2026-11-13 04:34:37 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by MypagesController#show as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering mypages/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'User' AND "active_storage_attachments"."name" = 'icon' LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  ↳ app/views/mypages/show.html.erb:7
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  ↳ app/views/mypages/show.html.erb:8
+  Rendered mypages/show.html.erb within layouts/application (Duration: 4.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.0ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 5.5ms | ActiveRecord: 0.3ms (3 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/posts" for 223.135.182.116 at 2026-11-13 04:34:39 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='PhotoPost',controller='posts'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:11
+  Rendered posts/index.html.erb within layouts/application (Duration: 1.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.3ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 2.8ms | ActiveRecord: 0.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/posts/new" for 223.135.182.116 at 2026-11-13 04:34:39 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='PhotoPost',controller='posts'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/_form.html.erb (Duration: 0.9ms | GC: 0.0ms)
+  Rendered posts/new.html.erb within layouts/application (Duration: 1.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.0ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 2.6ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/posts" for 223.135.182.116 at 2026-11-13 04:35:32 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "post" => {"title" => "cat ", "content" => "this is cat", "image" => #<ActionDispatch::Http::UploadedFile:0x00007d7db65f9248 @tempfile=#<Tempfile:/tmp/RackMultipart20261113-9338-14cdy0.png>, @content_type="image/png", @original_filename="funny-cat-pfp-silly-tabby--silly-tabby.png", @headers="Content-Disposition: form-data; name=\"post[image]\"; filename=\"funny-cat-pfp-silly-tabby--silly-tabby.png\"\r\nContent-Type: image/png\r\n">}, "commit" => "Create Post"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='PhotoPost',controller='posts'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:20:in 'PostsController#create'
+  [1m[36mPost Create (2.2ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "user_id", "created_at", "updated_at") VALUES ('cat ', 'this is cat', 1, '2026-11-13 04:35:32.100641', '2026-11-13 04:35:32.100641') RETURNING "id" /*action='create',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:20:in 'PostsController#create'
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='create',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:20:in 'PostsController#create'
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='create',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:20:in 'PostsController#create'
+  [1m[36mActiveStorage::Blob Create (0.2ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ('f1jtcqtd9q8b1vfzgfxx8bvs7fzn', 'funny-cat-pfp-silly-tabby--silly-tabby.png', 'image/png', '{"identified":true}', 'local', 786644, 'oLZNaW19ikrEln3h4iDe9A==', '2026-11-13 04:35:32.117679') RETURNING "id" /*action='create',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:20:in 'PostsController#create'
+  [1m[36mActiveStorage::Attachment Create (0.1ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ('image', 'Post', 1, 2, '2026-11-13 04:35:32.121520') RETURNING "id" /*action='create',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:20:in 'PostsController#create'
+  [1m[36mPost Update (0.3ms)[0m  [1m[33mUPDATE "posts" SET "updated_at" = '2026-11-13 04:35:32.124486' WHERE "posts"."id" = 1 /*action='create',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:20:in 'PostsController#create'
+  [1m[36mTRANSACTION (8.3ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='create',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:20:in 'PostsController#create'
+[36m  Disk Storage (2.3ms) [0m[32mUploaded file to key: f1jtcqtd9q8b1vfzgfxx8bvs7fzn (checksum: oLZNaW19ikrEln3h4iDe9A==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: 7f3ef979-3a62-489f-9179-708ba3d31f93) to Async(default) with arguments: #<GlobalID:0x00007d7db62e1c18 @uri=#<URI::GID gid://photo-post/ActiveStorage::Blob/2>>
+[ActiveJob] ↳ app/controllers/posts_controller.rb:20:in 'PostsController#create'
+Redirected to https://reimagined-fiesta-vp5vp9p794gpfjr7-3000.app.github.dev/posts
+[ActiveJob] [ActiveStorage::AnalyzeJob] [7f3ef979-3a62-489f-9179-708ba3d31f93]   [1m[36mActiveStorage::Blob Load (0.7ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 2 LIMIT 1 /*application='PhotoPost'*/[0m
+↳ app/controllers/posts_controller.rb:21:in 'PostsController#create'
+[ActiveJob] [ActiveStorage::AnalyzeJob] [7f3ef979-3a62-489f-9179-708ba3d31f93] Performing ActiveStorage::AnalyzeJob (Job ID: 7f3ef979-3a62-489f-9179-708ba3d31f93) from Async(default) enqueued at 2026-11-13T04:35:32.163665316Z with arguments: #<GlobalID:0x00007d7db61db670 @uri=#<URI::GID gid://photo-post/ActiveStorage::Blob/2>>
+Completed 302 Found in 85ms (ActiveRecord: 11.6ms (7 queries, 0 cached) | GC: 1.5ms)
+
+
+[ActiveJob] [ActiveStorage::AnalyzeJob] [7f3ef979-3a62-489f-9179-708ba3d31f93] Skipping image analysis because the ruby-vips gem isn't installed
+[ActiveJob] [ActiveStorage::AnalyzeJob] [7f3ef979-3a62-489f-9179-708ba3d31f93]   [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='PhotoPost',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [7f3ef979-3a62-489f-9179-708ba3d31f93]   [1m[36mActiveStorage::Blob Update (2.6ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = '{"identified":true,"analyzed":true}' WHERE "active_storage_blobs"."id" = 2 /*application='PhotoPost',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [7f3ef979-3a62-489f-9179-708ba3d31f93]   [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."blob_id" = 2 /*application='PhotoPost',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [7f3ef979-3a62-489f-9179-708ba3d31f93]   [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = 1 /*application='PhotoPost',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [7f3ef979-3a62-489f-9179-708ba3d31f93]   [1m[36mPost Update (0.1ms)[0m  [1m[33mUPDATE "posts" SET "updated_at" = '2026-11-13 04:35:32.190666' WHERE "posts"."id" = 1 /*application='PhotoPost',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [7f3ef979-3a62-489f-9179-708ba3d31f93]   [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='PhotoPost',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [7f3ef979-3a62-489f-9179-708ba3d31f93] Performed ActiveStorage::AnalyzeJob (Job ID: 7f3ef979-3a62-489f-9179-708ba3d31f93) from Async(default) in 29.52ms
+Started GET "/posts" for 223.135.182.116 at 2026-11-13 04:35:32 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#index as TURBO_STREAM
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='PhotoPost',controller='posts'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:11
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 /*action='index',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:11
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' AND "active_storage_attachments"."record_id" = 1 /*action='index',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 2 /*action='index',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:11
+  Rendered posts/index.html.erb within layouts/application (Duration: 6.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.4ms | GC: 0.0ms)
+Completed 200 OK in 12ms (Views: 8.5ms | ActiveRecord: 0.6ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MiwicHVyIjoiYmxvYl9pZCJ9fQ==--a8f1cf6f55c242194c67b9be8f3af4729c697b44/funny-cat-pfp-silly-tabby--silly-tabby.png" for 223.135.182.116 at 2026-11-13 04:35:32 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by ActiveStorage::Blobs::RedirectController#show as PNG
+  Parameters: {"signed_id" => "eyJfcmFpbHMiOnsiZGF0YSI6MiwicHVyIjoiYmxvYl9pZCJ9fQ==--a8f1cf6f55c242194c67b9be8f3af4729c697b44", "filename" => "funny-cat-pfp-silly-tabby--silly-tabby"}
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 2 LIMIT 1 /*action='show',application='PhotoPost',controller='redirect'*/[0m
+[36m  Disk Storage (0.4ms) [0m[34mGenerated URL for file at key: f1jtcqtd9q8b1vfzgfxx8bvs7fzn (https://reimagined-fiesta-vp5vp9p794gpfjr7-3000.app.github.dev/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJmMWp0Y3F0ZDlxOGIxdmZ6Z2Z4eDhidnM3ZnpuIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiZnVubnktY2F0LXBmcC1zaWxseS10YWJieS0tc2lsbHktdGFiYnkucG5nXCI7IGZpbGVuYW1lKj1VVEYtOCcnZnVubnktY2F0LXBmcC1zaWxseS10YWJieS0tc2lsbHktdGFiYnkucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0xMS0xM1QwNDo0MDozMi40OThaIiwicHVyIjoiYmxvYl9rZXkifX0=--9e6529fab9c32cb69ec1cd2af81a6dd280107f98/funny-cat-pfp-silly-tabby--silly-tabby.png)[0m
+Redirected to https://reimagined-fiesta-vp5vp9p794gpfjr7-3000.app.github.dev/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJmMWp0Y3F0ZDlxOGIxdmZ6Z2Z4eDhidnM3ZnpuIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiZnVubnktY2F0LXBmcC1zaWxseS10YWJieS0tc2lsbHktdGFiYnkucG5nXCI7IGZpbGVuYW1lKj1VVEYtOCcnZnVubnktY2F0LXBmcC1zaWxseS10YWJieS0tc2lsbHktdGFiYnkucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0xMS0xM1QwNDo0MDozMi40OThaIiwicHVyIjoiYmxvYl9rZXkifX0=--9e6529fab9c32cb69ec1cd2af81a6dd280107f98/funny-cat-pfp-silly-tabby--silly-tabby.png
+Completed 302 Found in 4ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJmMWp0Y3F0ZDlxOGIxdmZ6Z2Z4eDhidnM3ZnpuIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiZnVubnktY2F0LXBmcC1zaWxseS10YWJieS0tc2lsbHktdGFiYnkucG5nXCI7IGZpbGVuYW1lKj1VVEYtOCcnZnVubnktY2F0LXBmcC1zaWxseS10YWJieS0tc2lsbHktdGFiYnkucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNi0xMS0xM1QwNDo0MDozMi40OThaIiwicHVyIjoiYmxvYl9rZXkifX0=--9e6529fab9c32cb69ec1cd2af81a6dd280107f98/funny-cat-pfp-silly-tabby--silly-tabby.png" for 223.135.182.116 at 2026-11-13 04:35:32 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "funny-cat-pfp-silly-tabby--silly-tabby"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/posts/1" for 223.135.182.116 at 2026-11-13 04:35:45 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#show as HTML
+  Parameters: {"id" => "1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='show',application='PhotoPost',controller='posts'*/[0m
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = 1 LIMIT 1 /*action='show',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:46:in 'PostsController#set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='show',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/show.html.erb:6
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='show',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/show.html.erb:8
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 2 LIMIT 1 /*action='show',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/show.html.erb:9
+  Rendered posts/show.html.erb within layouts/application (Duration: 6.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.1ms | GC: 0.0ms)
+Completed 200 OK in 12ms (Views: 7.2ms | ActiveRecord: 0.5ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/posts" for 223.135.182.116 at 2026-11-13 04:35:48 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='PhotoPost',controller='posts'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC /*action='index',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:11
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 /*action='index',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:11
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' AND "active_storage_attachments"."record_id" = 1 /*action='index',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:11
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 2 /*action='index',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/index.html.erb:11
+  Rendered posts/index.html.erb within layouts/application (Duration: 6.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.0ms | GC: 0.0ms)
+Completed 200 OK in 13ms (Views: 9.4ms | ActiveRecord: 0.7ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/mypage" for 223.135.182.116 at 2026-11-13 04:36:44 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by MypagesController#show as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering mypages/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'User' AND "active_storage_attachments"."name" = 'icon' LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  ↳ app/views/mypages/show.html.erb:7
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='show',application='PhotoPost',controller='mypages'*/[0m
+  ↳ app/views/mypages/show.html.erb:8
+  Rendered mypages/show.html.erb within layouts/application (Duration: 4.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.4ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 5.6ms | ActiveRecord: 0.4ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/posts/1" for 223.135.182.116 at 2026-11-13 04:36:44 +0000
+Cannot render console from 223.135.182.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1, ::ffff:127.0.0.0/::ffff:127.255.255.255
+Processing by PostsController#show as HTML
+  Parameters: {"id" => "1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='show',application='PhotoPost',controller='posts'*/[0m
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = 1 LIMIT 1 /*action='show',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/controllers/posts_controller.rb:46:in 'PostsController#set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='show',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/show.html.erb:6
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Post' AND "active_storage_attachments"."name" = 'image' LIMIT 1 /*action='show',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/show.html.erb:8
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 2 LIMIT 1 /*action='show',application='PhotoPost',controller='posts'*/[0m
+  ↳ app/views/posts/show.html.erb:9
+  Rendered posts/show.html.erb within layouts/application (Duration: 5.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.6ms | GC: 0.0ms)
+Completed 200 OK in 11ms (Views: 6.9ms | ActiveRecord: 0.5ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
